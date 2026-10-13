@@ -5,7 +5,6 @@ STM32H750XBH6 上的**多传感器数据采集与记录固件**：IMU 走 **USB 
 记录到 SD 卡的 CSV 文件。
 
 > 硬件平台：STM32H750XB + 野火 H7 系列底板（RGB 屏 / SDRAM / SD 卡 / 电容触摸）。
-> 配套的 MATLAB 上位机脚本不在本仓库。
 
 ![系统组成](docs/images/system-overview.svg)
 
@@ -123,11 +122,6 @@ IMU 模块 USB ──(A转C 数据线)──> 底板 USB HOST 口
 
 页面切换用双图层 + 透明度实现，避免整屏闪烁。
 
-界面上的汉字来自内部 Flash 的点阵字库（24×24），不依赖外部字库芯片。取模脚本
-`User/fonts/make_cn_font.ps1` 在生成 `font_cn_data.c` 的同时会输出一张预览图，改完字表可以用它
-检查点阵对不对：
-
-![汉字点阵字库预览](User/fonts/cn_preview.png)
 
 ## 七、SD 卡记录格式
 
