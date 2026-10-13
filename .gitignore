@@ -1,0 +1,40 @@
+# ===================== Keil MDK 编译产物 =====================
+MDK-ARM/Objects/
+MDK-ARM/DebugConfig/
+MDK-ARM/Listings/
+Objects/
+DebugConfig/
+Listings/
+
+*.o
+*.crf
+*.d
+*.dep
+*.lnp
+*.axf
+*.elf
+*.map
+*.hex
+*.bin
+*.lst
+*.htm
+*.build_log.htm
+*.bak
+*.tmp
+*.sct.bak
+
+# Keil 用户自己的窗口布局 / 断点 / 上次打开的文件（每个人不一样）
+*.uvguix.*
+*.uvopt
+*.uvoptx
+
+# Keil Assistant (VSCode 插件) 的日志
+*.log
+*.log.lock
+
+# ===================== 系统 / 编辑器垃圾 =====================
+Thumbs.db
+desktop.ini
+.DS_Store
+__pycache__/
+*.pyc
