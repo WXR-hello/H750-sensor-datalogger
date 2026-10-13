@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="660" viewBox="0 0 1040 660"
+     font-family="Segoe UI, Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <rect x="0" y="0" width="1040" height="660" fill="#fbfcfd"/>
+
+  <text x="40" y="46" font-size="23" font-weight="700" fill="#263238">USB Host 数据流（CDC 虚拟串口）</text>
+  <text x="40" y="72" font-size="14" fill="#607d8b">左：模块 → 板子（收数据）；右：板子 → 模块（发指令）</text>
+  <line x1="40" y1="86" x2="1000" y2="86" stroke="#cfd8dc" stroke-width="1.5"/>
+  <line x1="516" y1="100" x2="516" y2="566" stroke="#cfd8dc" stroke-width="1.5" stroke-dasharray="6 5"/>
+
+  <defs>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#546e7a"/>
+    </marker>
+  </defs>
+
+  <text x="60" y="122" font-size="15" font-weight="700" fill="#00695c">① 收数据（上行）</text>
+  <text x="540" y="122" font-size="15" font-weight="700" fill="#6a1b9a">② 发指令（下行）</text>
+
+  <!-- ============ 左：上行 ============ -->
+  <g stroke="#00695c" stroke-width="1.5">
+    <rect x="60" y="140" width="430" height="58" rx="9" fill="#e0f2f1"/>
+    <rect x="60" y="226" width="430" height="58" rx="9" fill="#ffffff"/>
+    <rect x="60" y="312" width="430" height="58" rx="9" fill="#ffffff"/>
+    <rect x="60" y="398" width="430" height="58" rx="9" fill="#ffffff"/>
+    <rect x="60" y="496" width="200" height="58" rx="9" fill="#e8f5e9"/>
+    <rect x="290" y="496" width="200" height="58" rx="9" fill="#fff3e0"/>
+  </g>
+  <g font-size="14.5">
+    <text x="76" y="165" font-weight="700" fill="#004d40">IWT603 IMU 模块</text>
+    <text x="76" y="185" fill="#455a64" font-size="12.5">USB 标准 CDC 虚拟串口，批量端点为 64 字节</text>
+    <text x="76" y="251" font-weight="700" fill="#004d40">USBH_CDC_ReceiveCallback()</text>
+    <text x="76" y="271" fill="#455a64" font-size="12.5">User/usbhost/usb_host.c — 收完立刻重挂下一次接收</text>
+    <text x="76" y="337" font-weight="700" fill="#004d40">SensorUsbInput() → SensorRxByte()</text>
+    <text x="76" y="357" fill="#455a64" font-size="12.5">MDK-ARM/imu.c — 统计字节数，再喂给协议库</text>
+    <text x="76" y="423" font-weight="700" fill="#004d40">WitSerialDataIn() → sReg[]</text>
+    <text x="76" y="443" fill="#455a64" font-size="12.5">wit_c_sdk 解帧，回调刷新寄存器数组</text>
+  </g>
+  <g font-size="13.5" font-weight="700">
+    <text x="76" y="521" fill="#1b5e20">屏幕实时数值</text>
+    <text x="306" y="521" fill="#e65100">SD 卡 CSV</text>
+  </g>
+  <g font-size="11.5" fill="#546e7a">
+    <text x="76" y="541">数据页，50 ms 刷新一次</text>
+    <text x="306" y="541">IMULog_WriteSample()</text>
+  </g>
+
+  <g stroke="#546e7a" stroke-width="1.8" marker-end="url(#a2)" fill="none">
+    <line x1="275" y1="198" x2="275" y2="224"/>
+    <line x1="275" y1="284" x2="275" y2="310"/>
+    <line x1="275" y1="370" x2="275" y2="396"/>
+  </g>
+  <g stroke="#546e7a" stroke-width="1.8" fill="none">
+    <path d="M 275 456 L 275 478 L 160 478 L 160 494" marker-end="url(#a2)"/>
+    <path d="M 275 456 L 275 478 L 390 478 L 390 494" marker-end="url(#a2)"/>
+  </g>
+  <g font-size="11.5" fill="#37474f">
+    <text x="284" y="215">批量 IN 端点</text>
+    <text x="284" y="301">字节流回调</text>
+    <text x="284" y="387">按 11 字节帧解析</text>
+  </g>
+
+  <!-- ============ 右：下行 ============ -->
+  <g stroke="#6a1b9a" stroke-width="1.5">
+    <rect x="540" y="140" width="430" height="58" rx="9" fill="#f3e5f5"/>
+    <rect x="540" y="226" width="430" height="58" rx="9" fill="#ffffff"/>
+    <rect x="540" y="312" width="430" height="58" rx="9" fill="#ffffff"/>
+    <rect x="540" y="398" width="430" height="58" rx="9" fill="#ffffff"/>
+    <rect x="540" y="496" width="430" height="58" rx="9" fill="#f3e5f5"/>
+  </g>
+  <g font-size="14.5">
+    <text x="556" y="165" font-weight="700" fill="#4a148c">wit_c_sdk 写回调</text>
+    <text x="556" y="185" fill="#455a64" font-size="12.5">上电设回传率/内容；每 5 s 回读 RRATE、RSW</text>
+    <text x="556" y="251" font-weight="700" fill="#4a148c">SensorUsbSend()</text>
+    <text x="556" y="271" fill="#455a64" font-size="12.5">协议库要发的字节原样转交</text>
+    <text x="556" y="337" font-weight="700" fill="#4a148c">USB_Host_SendBytes()</text>
+    <text x="556" y="357" fill="#455a64" font-size="12.5">先入 128 字节环形队列，不阻塞主循环</text>
+    <text x="556" y="423" font-weight="700" fill="#4a148c">USB_Host_Process()</text>
+    <text x="556" y="443" fill="#455a64" font-size="12.5">主循环 Imu_Task() 每圈调用：跑枚举状态机 + 收发</text>
+    <text x="556" y="521" font-weight="700" fill="#4a148c">CDC 批量 OUT 端点</text>
+    <text x="556" y="541" fill="#455a64" font-size="12.5">发完由 TransmitCallback 释放，再取下一帧</text>
+  </g>
+
+  <g stroke="#546e7a" stroke-width="1.8" marker-end="url(#a2)" fill="none">
+    <line x1="755" y1="198" x2="755" y2="224"/>
+    <line x1="755" y1="284" x2="755" y2="310"/>
+    <line x1="755" y1="370" x2="755" y2="396"/>
+    <line x1="755" y1="456" x2="755" y2="494"/>
+  </g>
+  <g font-size="11.5" fill="#37474f">
+    <text x="764" y="215">写寄存器请求</text>
+    <text x="764" y="301">进队列</text>
+    <text x="764" y="387">每次取一帧</text>
+    <text x="764" y="481">发给模块</text>
+  </g>
+
+  <!-- ============ 备注 ============ -->
+  <rect x="40" y="580" width="930" height="56" rx="8" fill="#fffde7" stroke="#fbc02d" stroke-width="1.3"/>
+  <text x="56" y="602" font-size="13" fill="#795548">
+    收和发都在同一个 USB_Host_Process() 里推进：它既是主机状态机（枚举/类驱动），也是收发引擎；
+  </text>
+  <text x="56" y="623" font-size="13" fill="#795548">
+    所以它必须被主循环高频调用 —— 目前放在 Imu_Task() 里，每圈执行一次。
+  </text>
+</svg>

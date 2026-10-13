@@ -7,6 +7,8 @@ STM32H750XBH6 上的**多传感器数据采集与记录固件**：IMU 走 **USB 
 > 硬件平台：STM32H750XB + 野火 H7 系列底板（RGB 屏 / SDRAM / SD 卡 / 电容触摸）。
 > 配套的 MATLAB 上位机脚本不在本仓库。
 
+![系统组成](docs/images/system-overview.svg)
+
 ---
 
 ## 一、功能
@@ -59,10 +61,13 @@ H750_Sensor/
 │   ├─ fonts/      内部 Flash 点阵字库（含取模脚本 make_cn_font.ps1）
 │   └─ usbhost/    ST USB Host 库 + CDC 类 + HCD 粘合层
 ├─ Drivers/        STM32H7 HAL + CMSIS
+├─ docs/images/    README 用图：系统框图 / 数据流图 / 界面示意图（SVG，可缩放）
 └─ README_*.md     各子系统的详细说明（见文末索引）
 ```
 
 ## 四、数据流
+
+![USB 数据流](docs/images/data-flow.svg)
 
 ```
 IMU 模块 USB ──(A转C 数据线)──> 底板 USB HOST 口
@@ -114,7 +119,15 @@ IMU 模块 USB ──(A转C 数据线)──> 底板 USB HOST 口
 | 菜单页 | 三个按钮：**开始存储** / **停止存储** / **显示数据**；底部状态行显示 SD 卡状态与文件名 |
 | 数据页 | 实时数值：横滚 / 俯仰 / 航向、加速度 XYZ、角速度 XYZ、编码器角度、称重、ADC 原始值；右下角"返回" |
 
+![屏幕界面](docs/images/ui-pages.svg)
+
 页面切换用双图层 + 透明度实现，避免整屏闪烁。
+
+界面上的汉字来自内部 Flash 的点阵字库（24×24），不依赖外部字库芯片。取模脚本
+`User/fonts/make_cn_font.ps1` 在生成 `font_cn_data.c` 的同时会输出一张预览图，改完字表可以用它
+检查点阵对不对：
+
+![汉字点阵字库预览](User/fonts/cn_preview.png)
 
 ## 七、SD 卡记录格式
 

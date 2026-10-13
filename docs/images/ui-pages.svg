@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="690" viewBox="0 0 900 690"
+     font-family="Segoe UI, Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <rect x="0" y="0" width="900" height="690" fill="#fbfcfd"/>
+
+  <text x="40" y="46" font-size="23" font-weight="700" fill="#263238">屏幕界面（480×800 竖屏，电阻/电容触摸）</text>
+  <text x="40" y="72" font-size="14" fill="#607d8b">左：菜单页（开机默认）；右：数据页（点“显示数据”进入）</text>
+  <line x1="40" y1="86" x2="860" y2="86" stroke="#cfd8dc" stroke-width="1.5"/>
+
+  <!-- ===================== 菜单页 ===================== -->
+  <text x="80" y="112" font-size="14" font-weight="700" fill="#37474f">菜单页</text>
+  <rect x="80" y="122" width="288" height="480" rx="16" fill="#263238"/>
+  <rect x="88" y="130" width="272" height="464" rx="9" fill="#0b1020"/>
+
+  <text x="224" y="182" font-size="26" font-weight="700" fill="#ffffff" text-anchor="middle">菜单</text>
+  <line x1="112" y1="198" x2="336" y2="198" stroke="#37474f" stroke-width="1.2"/>
+
+  <rect x="104" y="222" width="240" height="64" rx="6" fill="#2e7d32"/>
+  <text x="224" y="261" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">开始存储</text>
+  <rect x="104" y="304" width="240" height="64" rx="6" fill="#b71c1c"/>
+  <text x="224" y="343" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">停止存储</text>
+  <rect x="104" y="386" width="240" height="64" rx="6" fill="#0d47a1"/>
+  <text x="224" y="425" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">显示数据</text>
+
+  <rect x="88" y="552" width="272" height="34" fill="#14202e"/>
+  <text x="98" y="574" font-size="12" fill="#66bb6a">正在记录 IMU0001.CSV</text>
+
+  <text x="80" y="622" font-size="11.5" fill="#78909c">没插卡时点“开始存储”会弹提示：请插入 SD 卡</text>
+
+  <!-- ===================== 数据页 ===================== -->
+  <text x="500" y="112" font-size="14" font-weight="700" fill="#37474f">数据页（实时数值）</text>
+  <rect x="500" y="122" width="288" height="480" rx="16" fill="#263238"/>
+  <rect x="508" y="130" width="272" height="464" rx="9" fill="#0b1020"/>
+
+  <g font-size="12.5" fill="#90a4ae">
+    <text x="518" y="156">横滚</text>
+    <text x="518" y="192">俯仰</text>
+    <text x="518" y="228">航向</text>
+    <text x="518" y="264">加速度 X</text>
+    <text x="518" y="300">加速度 Y</text>
+    <text x="518" y="336">加速度 Z</text>
+    <text x="518" y="372">角速度 X</text>
+    <text x="518" y="408">角速度 Y</text>
+    <text x="518" y="444">角速度 Z</text>
+    <text x="518" y="480">角度</text>
+    <text x="518" y="516">称重</text>
+  </g>
+  <g font-size="12.5" fill="#e3f2fd" font-family="Consolas, monospace" text-anchor="end">
+    <text x="770" y="156">+0.13 °</text>
+    <text x="770" y="192">-0.42 °</text>
+    <text x="770" y="228">123.45 °</text>
+    <text x="770" y="264">-0.021 g</text>
+    <text x="770" y="300">+0.004 g</text>
+    <text x="770" y="336">+1.002 g</text>
+    <text x="770" y="372">+0.3 °/s</text>
+    <text x="770" y="408">-0.1 °/s</text>
+    <text x="770" y="444">+0.2 °/s</text>
+    <text x="770" y="480">271.44 °</text>
+    <text x="770" y="516">12.35 kg</text>
+  </g>
+  <g font-size="12.5" fill="#546e7a">
+    <text x="518" y="552">ADC</text>
+  </g>
+  <text x="770" y="552" font-size="12.5" fill="#78909c" font-family="Consolas, monospace" text-anchor="end">39612</text>
+
+  <rect x="508" y="560" width="272" height="34" fill="#37474f"/>
+  <text x="644" y="582" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">返回</text>
+
+  <text x="500" y="622" font-size="11.5" fill="#78909c">数值 50 ms 刷新一次，只重画变化的那一行</text>
+
+  <!-- ===================== 说明 ===================== -->
+  <rect x="40" y="646" width="820" height="30" rx="8" fill="#e8eaf6" stroke="#9fa8da" stroke-width="1.2"/>
+  <text x="56" y="666" font-size="13" fill="#283593">
+    两个页面画在两个图层上，切换时靠透明度过渡（LCD_SetTransparency），所以看不到刷屏的中间过程。
+  </text>
+</svg>

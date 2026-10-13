@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="660" viewBox="0 0 1060 660"
+     font-family="Segoe UI, Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <rect x="0" y="0" width="1060" height="660" fill="#fbfcfd"/>
+
+  <text x="40" y="46" font-size="23" font-weight="700" fill="#263238">H750 多传感器数据记录仪 — 系统组成</text>
+  <text x="40" y="72" font-size="14" fill="#607d8b">STM32H750XBH6 · 480×800 RGB 屏 · 触摸菜单 · SD 卡 CSV 记录</text>
+  <line x1="40" y1="86" x2="1020" y2="86" stroke="#cfd8dc" stroke-width="1.5"/>
+
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#546e7a"/>
+    </marker>
+  </defs>
+
+  <!-- ================= 左侧：传感器 / 外设 ================= -->
+  <g stroke="#37474f" stroke-width="1.6">
+    <rect x="40" y="110" width="250" height="86" rx="10" fill="#e8f5e9"/>
+    <rect x="40" y="212" width="250" height="86" rx="10" fill="#e8f5e9"/>
+    <rect x="40" y="314" width="250" height="86" rx="10" fill="#e8f5e9"/>
+    <rect x="40" y="416" width="250" height="86" rx="10" fill="#e8f5e9"/>
+  </g>
+  <g font-size="15" font-weight="700" fill="#1b5e20">
+    <text x="56" y="140">IWT603 六轴 IMU</text>
+    <text x="56" y="242">增量式编码器 2500 P/R</text>
+    <text x="56" y="344">称重传感器 0~50 kg</text>
+    <text x="56" y="446">继电器模块</text>
+  </g>
+  <g font-size="12.5" fill="#455a64">
+    <text x="56" y="162">USB CDC 虚拟串口</text>
+    <text x="56" y="182">Type-C → A转C 数据线</text>
+    <text x="56" y="264">A / B / Z 三路输出</text>
+    <text x="56" y="284">Z 相每圈一次做机械零点</text>
+    <text x="56" y="366">BSQ-3 应变式</text>
+    <text x="56" y="386">PB0 = ADC1_INP9</text>
+    <text x="56" y="468">按键触发，吸合 2 s 自动释放</text>
+    <text x="56" y="488">COM-NO / COM-NC</text>
+  </g>
+
+  <!-- ================= 中间：MCU ================= -->
+  <rect x="370" y="110" width="320" height="452" rx="12" fill="#ffffff" stroke="#1565c0" stroke-width="2.2"/>
+  <text x="530" y="146" font-size="19" font-weight="700" fill="#0d47a1" text-anchor="middle">STM32H750XBH6</text>
+  <text x="530" y="170" font-size="12.5" fill="#546e7a" text-anchor="middle">SYSCLK 400 MHz · HSE 25 MHz · HAL + MicroLIB</text>
+  <line x1="392" y1="184" x2="668" y2="184" stroke="#cfd8dc" stroke-width="1.4"/>
+
+  <g font-size="12.5">
+    <rect x="392" y="200" width="276" height="52" rx="8" fill="#e3f2fd" stroke="#90a4ae" stroke-width="1.2"/>
+    <text x="404" y="221" font-weight="700" fill="#0d47a1">USB_OTG_HS + 片内全速 PHY</text>
+    <text x="404" y="241" fill="#455a64">PB14 = D- ／ PB15 = D+</text>
+
+    <rect x="392" y="262" width="276" height="52" rx="8" fill="#e3f2fd" stroke="#90a4ae" stroke-width="1.2"/>
+    <text x="404" y="283" font-weight="700" fill="#0d47a1">TIM2 硬件编码器模式</text>
+    <text x="404" y="303" fill="#455a64">A = PA5 ／ B = PB3 ／ Z = PA8 (EXTI)</text>
+
+    <rect x="392" y="324" width="276" height="52" rx="8" fill="#e3f2fd" stroke="#90a4ae" stroke-width="1.2"/>
+    <text x="404" y="345" font-weight="700" fill="#0d47a1">ADC1 16 位 + 软件滤波</text>
+    <text x="404" y="365" fill="#455a64">PB0 = ADC1_INP9 ／ 去皮键 PA0</text>
+
+    <rect x="392" y="386" width="276" height="52" rx="8" fill="#e3f2fd" stroke="#90a4ae" stroke-width="1.2"/>
+    <text x="404" y="407" font-weight="700" fill="#0d47a1">LTDC + DMA2D 双图层</text>
+    <text x="404" y="427" fill="#455a64">PI / PJ / PK 口，RGB888</text>
+
+    <rect x="392" y="448" width="276" height="52" rx="8" fill="#e3f2fd" stroke="#90a4ae" stroke-width="1.2"/>
+    <text x="404" y="469" font-weight="700" fill="#0d47a1">FMC 驱动 SDRAM 显存</text>
+    <text x="404" y="489" fill="#455a64">帧缓冲起始 0xD0000000</text>
+
+    <rect x="392" y="510" width="276" height="38" rx="8" fill="#fff8e1" stroke="#ffb300" stroke-width="1.2"/>
+    <text x="404" y="534" fill="#8d6e00">USB 内核时钟：PLL3Q = 432/9 = 48 MHz</text>
+  </g>
+
+  <!-- ================= 右侧：输出 / 存储 ================= -->
+  <g stroke="#37474f" stroke-width="1.6">
+    <rect x="760" y="110" width="260" height="80" rx="10" fill="#e1f5fe"/>
+    <rect x="760" y="198" width="260" height="80" rx="10" fill="#e1f5fe"/>
+    <rect x="760" y="286" width="260" height="80" rx="10" fill="#fff3e0"/>
+    <rect x="760" y="374" width="260" height="80" rx="10" fill="#ede7f6"/>
+    <rect x="760" y="462" width="260" height="80" rx="10" fill="#f5f5f5"/>
+  </g>
+  <g font-size="15" font-weight="700" fill="#01579b">
+    <text x="776" y="140">480×800 RGB 屏</text>
+    <text x="776" y="228">GT1151 电容触摸</text>
+  </g>
+  <g font-size="15" font-weight="700" fill="#e65100">
+    <text x="776" y="316">microSD 卡</text>
+  </g>
+  <g font-size="15" font-weight="700" fill="#4527a0">
+    <text x="776" y="404">SDRAM</text>
+  </g>
+  <g font-size="15" font-weight="700" fill="#424242">
+    <text x="776" y="492">板载 CH340C 串口</text>
+  </g>
+  <g font-size="12.5" fill="#455a64">
+    <text x="776" y="162">LTDC + DMA2D</text>
+    <text x="776" y="182">菜单页 / 数据页</text>
+    <text x="776" y="250">软件模拟 I2C</text>
+    <text x="776" y="270">PH4/PH5/PG3/PG7</text>
+    <text x="776" y="338">SDMMC1 + FatFs</text>
+    <text x="776" y="358">IMU0001.CSV …</text>
+    <text x="776" y="426">FMC 显存</text>
+    <text x="776" y="446">800×480×4 B ×2 图层</text>
+    <text x="776" y="514">PA9 / PA10</text>
+    <text x="776" y="534">旧方案，已停用</text>
+  </g>
+
+  <!-- ================= 连接箭头 ================= -->
+  <g stroke="#546e7a" stroke-width="1.8" marker-end="url(#ar)" fill="none">
+    <line x1="290" y1="153" x2="366" y2="153"/>
+    <line x1="290" y1="255" x2="366" y2="255"/>
+    <line x1="290" y1="357" x2="366" y2="357"/>
+    <line x1="290" y1="459" x2="366" y2="459"/>
+    <line x1="690" y1="150" x2="756" y2="150"/>
+    <line x1="690" y1="238" x2="756" y2="238"/>
+    <line x1="690" y1="326" x2="756" y2="326"/>
+    <line x1="690" y1="414" x2="756" y2="414"/>
+    <line x1="690" y1="502" x2="756" y2="502"/>
+  </g>
+  <g font-size="12" fill="#37474f">
+    <text x="296" y="146">USB Host</text>
+    <text x="296" y="248">PA5 / PB3 / PA8</text>
+    <text x="296" y="350">PB0 / PA0</text>
+    <text x="296" y="452">PA12 / PC13</text>
+    <text x="700" y="143">LTDC</text>
+    <text x="700" y="231">I2C</text>
+    <text x="700" y="319">SDMMC1</text>
+    <text x="700" y="407">FMC</text>
+    <text x="700" y="495">UART</text>
+  </g>
+
+  <!-- ================= 备注 ================= -->
+  <rect x="40" y="592" width="980" height="48" rx="8" fill="#fffde7" stroke="#fbc02d" stroke-width="1.3"/>
+  <text x="56" y="613" font-size="13" fill="#795548">
+    注意 1：PB0 与板载红色 LED 复用，用称重时必须拔掉 J73 跳线帽，否则 LED 支路会拉低传感器基准电压。
+  </text>
+  <text x="56" y="632" font-size="13" fill="#795548">
+    注意 2：PA5 / PB3 是 TIM2 的两个编码器通道；旧版把 A 相接在 PA15（JTDI），若用 5 线 JTAG 调试会与调试口冲突。
+  </text>
+</svg>
