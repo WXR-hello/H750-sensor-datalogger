@@ -37,7 +37,7 @@ STM32H750XBH6 上的**多传感器数据采集与记录固件**：IMU 走 **USB 
 | 屏背光 | **PD13** | LCD_BL |
 | RGB 屏 | PI / PJ / PK 口 | LTDC 数据与同步信号 |
 | SDRAM | PD / PE / PF / PG / PH / PI 口 | FMC，显存起始地址 `0xD0000000` |
-| 串口（旧方案，未启用） | PA9 / PA10 | 板载 CH340C，仅历史版本使用 |
+
 
 ## 三、目录结构
 
